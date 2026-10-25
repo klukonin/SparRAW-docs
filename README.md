@@ -96,6 +96,18 @@
 | [LINK-THROUGHPUT](research/LINK-THROUGHPUT.md) | Пропускная способность 60-ГГц линка и цена снятия окна AW |
 | [RECOVERY](research/RECOVERY.md) | Откат и восстановление узла при опытах с прошивкой |
 
+## Talyn (`talyn/`)
+
+Talyn (QCA6436, 802.11ay) по начинке почти Sparrow — те же ядра ARC600 fw и uc, общий драйвер wil6210, —
+поэтому его поддержка ведётся в рамках SparRAW.
+
+| документ | о чём |
+|---|---|
+| [Обзор](talyn/README.md) | образы, конвейер разбора, итоги 7.5.3.115, смена канала и CB1/CB2, команды WMI, счётчики MAC и расписание DTI |
+| [HW-CAPABILITIES](talyn/HW-CAPABILITIES.md) | карта периферии по всем образам Sparrow и Talyn/TG, поведение регистров на Sparrow |
+| [SPARROW-APPLICABILITY](talyn/SPARROW-APPLICABILITY.md) | какие регистры Talyn 7.5 есть в железе Sparrow |
+| [TDMA-TG](talyn/TDMA-TG.md) | механизм TDMA Terragraph 10.11 и его регистры у Sparrow |
+
 ## Соседние репозитории
 
 `SparRAW-firmware` (прошивки из исходников), `SparRAW-driver` (драйвер для
