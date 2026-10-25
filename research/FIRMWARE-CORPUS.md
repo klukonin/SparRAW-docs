@@ -16,8 +16,8 @@
 | wil6210_tg | 10.11.0.70 | Terragraph | `wil6210_tg.fw` | Terragraph |
 | cnWave IF2IF | 10.11.4.87 / .92 | Terragraph | `wil6210-IF2IF-*.fw` | Terragraph IF2IF |
 
-Кроме того — зашифрованные образы и board-файлы RouterOS и их расшифрованные копии
-([NPK-ENCRYPTION.md](NPK-ENCRYPTION.md)).
+Кроме того — упакованные образы и board-файлы RouterOS и их распакованные копии
+([NPK-ENCODING.md](NPK-ENCODING.md)).
 
 ## Возможные сверки
 

@@ -10,7 +10,7 @@
 |---|---|
 | [01 — Архитектура](chip/01-architecture.md) | два ядра ARC600 (fw и ucode), карта памяти и адреса хоста, gp, милли-код, форматы `.fw`/`.brd`, загрузка, планировщик, структуры, автоматы |
 | [02 — Регистры](chip/02-registers.md) | карта периферии, прерывания (RGF_ICR), USER_RGF, регистровый файл MAC r36..r56, MAC_SXD (IFS, TBTT, TSF), регистры без доказанного смысла |
-| [03 — MAC](chip/03-mac.md) | кольцо команд core write, пространство кодов, расшифрованные коды, такт 165 МГц и IFS, ожидания ucode, GP-таймеры |
+| [03 — MAC](chip/03-mac.md) | кольцо команд core write, пространство кодов, распакованные коды, такт 165 МГц и IFS, ожидания ucode, GP-таймеры |
 | [04 — Прошивка ↔ микрокод](chip/04-fw-ucode.md) | почтовый ящик, команды LMAC и события ucode, диспетчеры, автоматы `basic_sm`, таблицы в ОЗУ |
 | [05 — Интерфейс с хостом](chip/05-host-interface.md) | PCIe и окна памяти, WMI, нештатные смыслы команд, рычаги с хоста без патча, лог и трасса, грабли |
 | [06 — Биконинг](chip/06-beaconing.md) | BI (BTI/A-BFT/AW/DTI), автомат BI, таблицы расписания, распределённый биконинг и рандомизатор, NAV-отсрочка, Clustering, P2P |
@@ -78,7 +78,7 @@
 | [FIRMWARE-CORPUS](research/FIRMWARE-CORPUS.md) | Корпус образов прошивки wil6210 |
 | [FIRMWARE-COMPARISON](research/FIRMWARE-COMPARISON.md) | Прошивка wil6210 в пакетах RouterOS: версии и контейнер |
 | [UBNT-vs-ROUTEROS-6.2](research/UBNT-vs-ROUTEROS-6.2.md) | Сборки 6.2 двух производителей: UBNT 6.2.0.225 и RouterOS 6.2.0.1000 |
-| [NPK-ENCRYPTION](research/NPK-ENCRYPTION.md) | Пакеты RouterOS (npk): распаковка и шифрование fw/brd wil6210 |
+| [NPK-encoding](research/NPK-ENCODING.md) | Пакеты RouterOS (npk): распаковка и кодирование fw/brd wil6210 |
 | [UNPACK-1.8-and-ubnt](research/UNPACK-1.8-and-ubnt.md) | Распаковка образов cnWave 1.8 и UBNT (Wave, airFiber 60) |
 | [BRD-RF-REGS](research/BRD-RF-REGS.md) | Board-файл wil6210: секция РЧ-регистров и патчер RouterOS |
 | [BUILD-PIPELINE](research/BUILD-PIPELINE.md) | Точечная правка образа и приведение к формату мейнлайна |
@@ -93,6 +93,7 @@
 | [ORIGINAL-DRIVER-3.8](research/ORIGINAL-DRIVER-3.8.md) | Первый драйвер wil6210 (Linux 3.8, 2012) |
 | [TRACING-TOOLKIT](research/TRACING-TOOLKIT.md) | Трассировка wil6210 на стенде: лог прошивки, трасса ucode, команды WMI |
 | [OBSERVABILITY](research/OBSERVABILITY.md) | Наблюдение за прошивкой с хоста |
+| [WMI-ECHO-BI-6200](research/WMI-ECHO-BI-6200.md) | WMI_ECHO как «set beacon interval» в 6.2.0.1000: корневая причина пустого линка и проверка на стенде (патч 914 — фикс) |
 | [LINK-THROUGHPUT](research/LINK-THROUGHPUT.md) | Пропускная способность 60-ГГц линка и цена снятия окна AW |
 | [RECOVERY](research/RECOVERY.md) | Откат и восстановление узла при опытах с прошивкой |
 
