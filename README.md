@@ -81,6 +81,7 @@
 | [NPK-encoding](research/NPK-ENCODING.md) | Пакеты RouterOS (npk): распаковка и кодирование fw/brd wil6210 |
 | [UNPACK-1.8-and-ubnt](research/UNPACK-1.8-and-ubnt.md) | Распаковка образов cnWave 1.8 и UBNT (Wave, airFiber 60) |
 | [BRD-RF-REGS](research/BRD-RF-REGS.md) | Board-файл wil6210: секция РЧ-регистров и патчер RouterOS |
+| [TX-POWER](research/TX-POWER.md) | Мощность TX Sparrow: таблицы усилений, применение на ходу без разрыва линка, шкала, метод измерения |
 | [BUILD-PIPELINE](research/BUILD-PIPELINE.md) | Точечная правка образа и приведение к формату мейнлайна |
 | [SELFBUILT-FIRMWARE](research/SELFBUILT-FIRMWARE.md) | Прошивка 4.1 из собственного дерева: устройство и проверка на железе |
 
@@ -108,6 +109,7 @@ Talyn (QCA6436, 802.11ay) по начинке почти Sparrow — те же �
 | [HW-CAPABILITIES](talyn/HW-CAPABILITIES.md) | карта периферии по всем образам Sparrow и Talyn/TG, поведение регистров на Sparrow |
 | [SPARROW-APPLICABILITY](talyn/SPARROW-APPLICABILITY.md) | какие регистры Talyn 7.5 есть в железе Sparrow |
 | [TDMA-TG](talyn/TDMA-TG.md) | механизм TDMA Terragraph 10.11 и его регистры у Sparrow |
+| [TPC](talyn/TPC.md) | мощность TX и TPC Talyn (индекс по MCS, датчик TLNA2), что делают драйвер MikroTik и RouterOS |
 
 ## Соседние репозитории
 
