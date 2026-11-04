@@ -133,6 +133,14 @@ ucode **разные** пространства данных 0x800000 — сов
 равен 8, иначе 6; параметры — из контекста BF (0x802f28/2a/2c = +0x14..+0x18
 структуры 0x802f14) либо из объекта, плюс TSF и адреса из 0x8020f0. Разметка
 объекта — [UCODE-TASKS §3.7](https://github.com/klukonin/SparRAW-firmware/blob/main/docs/UCODE-TASKS.md#37-0x802470--сборка-сообщения).
+**Отчёт MAC_MONITOR в образе SparRAW [стенд, 2026-11-03…04].** В отчёт (`mac_mon_report`,
+публикуется раз в BI; опубликованная копия fw — 0x85397e для поля +0x3e) добавлены счётчики
+стенда: `tx_rts` / `rx_cts` — открытия TXOP через RTS и полученные DMG CTS, `txop_end_tmo` (+0x6a) —
+выходы из ожидания `txop_event` по сроку, — все за один BI; `rx_busy_race` (+0x3e, u16; живая копия —
+DCCM ucode 0x8010c2) — PPDU, пойманные после сброса busy_event, накопительно с загрузки. Отставание
+счётчика PPDU ucode от PHY — `rx_flow_noevt_cnt` (DCCM ucode 0x800574). Что они показали —
+[MAC-AIR-TIMING §6–8](../research/MAC-AIR-TIMING.md).
+
 Путь «связь потеряна» из ucode на стенде не срабатывал — LOST_LINK приходит от
 детекторов fw ([UCODE-TASKS §2.1](https://github.com/klukonin/SparRAW-firmware/blob/main/docs/UCODE-TASKS.md#21-путь-связь-потеряна-из-ucode-код--железо)).
 

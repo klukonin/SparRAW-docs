@@ -101,6 +101,8 @@
 | [ORIGINAL-DRIVER-3.8](research/ORIGINAL-DRIVER-3.8.md) | Первый драйвер wil6210 (Linux 3.8, 2012) и тип сети ADHOC |
 | [TRACING-TOOLKIT](research/TRACING-TOOLKIT.md) | Трассировка wil6210 на стенде: лог прошивки, трасса ucode, команды WMI |
 | [OBSERVABILITY](research/OBSERVABILITY.md) | Наблюдение за прошивкой с хоста |
+| [PMC-RECORDER](research/PMC-RECORDER.md) | Регистратор пакетов MAC (PMC) как сниффер на узле: регистры, кольцо 7, формат записей, отчёты r36..r39, таблица 3 парсера, ограничения |
+| [MAC-AIR-TIMING](research/MAC-AIR-TIMING.md) | MAC в эфире по записи PMC: ответ через SIFS от команды ucode, Duration (вычет TXTIME, DMG CTS), BA Control, горизонт TXOP, reverse direction, AIFS, начало BTI |
 | [WMI-ECHO-BI-6200](research/WMI-ECHO-BI-6200.md) | WMI_ECHO как «set beacon interval» в 6.2.0.1000: корневая причина пустого линка и проверка на стенде (патч 914 — фикс) |
 | [LINK-THROUGHPUT](research/LINK-THROUGHPUT.md) | Пропускная способность 60-ГГц линка и цена снятия окна AW |
 | [RECOVERY](research/RECOVERY.md) | Откат и восстановление узла при опытах с прошивкой |
