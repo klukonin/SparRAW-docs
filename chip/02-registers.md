@@ -9,7 +9,9 @@
 * **регистровый файл MAC локального чтения** (`MSXD_LR_RGF`) — ARC-регистры
   `r36..r56` микрокода; с хоста не видны.
 
-Версия: **[4.1]**, **[6.2]**, **[обе]**. Полный справочник по адресам — генерируемая
+Версия: **[4.1]**, **[6.2]**, **[обе]**. Регистровая модель Sparrow восстановлена и верифицирована
+лабораторией **Evil Wireless Lab** (Kirill Lukonin / *Evil Wireless Man*) по обращениям из прошивки,
+автоматической карте и прямым замерам на стенде. Полный справочник по адресам — генерируемая
 карта [REGS-62](https://github.com/klukonin/SparRAW-firmware/blob/main/6.2/ref/REGS-62.md)
 (6.2); по блокам —
 [HARDWARE-BLOCKS](https://github.com/klukonin/SparRAW-firmware/blob/main/docs/HARDWARE-BLOCKS.md)
