@@ -224,6 +224,20 @@ AP), 3 — AP; hostapd `pbss=1` даёт 2, не 1 (см. «Противореч
 (LM, MAINTAIN, LINK_STATS_SM, MLME_SM) —
 [ROLELESS-LINK §4.4](https://github.com/klukonin/SparRAW-firmware/blob/main/docs/ROLELESS-LINK.md#44-трассировка-автоматов-код-железо).
 
+### 7.5.1 Переассоциация «на месте» (In-Place Reassociation) [код 6.2 + 802.11-2020]
+
+В стандарте 802.11-2020 (§11.3.5.4 c) регламентирована процедура повторного подключения станции: при получении повторного (Re)Association Request от уже связанной станции точка обязана обновить параметры сессии без разрыва радиоканала:
+
+* **Структуры конечных автоматов в ОЗУ прошивки 6.2:**
+  - `mlme_sm`: контекст `conn + 0xF0` (состояния 0: UNASSOCIATE, 1: ASSOCIATE, 2: ASSOCIATED; статус ответа `conn + 0x118`, сохранённый запрос `conn + 0x11C`, признак отправки ответа `m_assoc_sent` `conn + 0xFC`);
+  - `conn_main_sm`: контекст `conn + 0x124` (состояния: 0 UNRESOURCED, 1 WAIT_FOR_BCON_RX, 2 WAIT_FOR_LINKUP, 3 READY_FOR_ASSOC, 4 WAIT_FOR_ASSOC_DONE, 5 ASSOCIATED, 6 WAIT_FOR_LM_START, 7 KEY_ASSOC, 8 WAIT_FOR_DISCONN).
+* **Вендорский дефект разрыва:** в стоковой прошивке 6.2 приход (Re)Assoc Request от ассоциированной станции генерировал событие `EVT_CONNECT`, которое безусловно вызывало `mlme_sm__disconnect_ev_handle_8f26a8` $\to$ отправка Disassociation в эфир, уничтожение CID, сброс обученных РЧ-секторов лучеформирования и падение соединения.
+* **Архитектура In-Place Reassociation в SparRAW:**
+  - Перехват события 0 в `rx_pkt_handler` (0x8e3ed0) при нахождении станции в `ASSOCIATED`;
+  - Немедленное формирование и отправка (Re)Assoc Response (`mgmt_tx__build_assoc_resp_8f9e88` + `tx_api__send_mgmt_with_cb`) с сохранением прежнего AID, CID, РЧ-луча и DTI-аллокаций;
+  - После квитирования ответа: удаление старого ключа PTK (`install_key_index_stub(cid, 1, 0...)`), перевод `conn_main_sm` из состояния 7 (KEY_ASSOC) обратно в 5 (ASSOCIATED), а `mlme_sm` — из 2 в 1 с перезапуском таймера ассоциации;
+  - Отправка хосту **только** `WMI_CONNECT_EVENTID` (без промежуточного `WMI_DISCONNECT_EVENTID`): драйвер сбрасывает кольца упорядочивания (RX PN) и закрывает порт, а hostapd инициирует 4-way handshake с новым PTK без удаления станции (`cfg80211_new_sta` без `del_sta`).
+
 ## 7.6 Безролевой линк
 
 ### 7.6.1 A-BFT без ролей до READY_FOR_ASSOC
