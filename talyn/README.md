@@ -57,9 +57,24 @@
   линкуемый в адресное пространство ядра по смещению `0xa0000`.
 - Область периферии RGF отображается в диапазоне `0x880000 … 0x8bffff`.
 
+### Конвейер и статистика реверса Talyn 7.5.3.115
+1. **Сегментация**: разбор образов на сегменты по AHB-адресам (`fw_code` 0x900000 $\to$ 0x0, `fw_code2` 0x9a0000 $\to$ 0xa0000, `fw_data` 0xa00000 $\to$ 0x800000, `uc_code` 0xa38000 $\to$ 0x0, `uc_data` 0xa78000 $\to$ 0x800000).
+2. **Дизассемблирование**: Ghidra headless (языковой модуль ARCompact:LE:32:default) с окном периферии RGF `0x880000 … 0x8bffff`.
+3. **Восстановление символов**: связывание строк системного журнала (`seed/`, `names/fwlog_names.py`, ссылки `limm 0x01000000|offset` в записях 0x65 fw / 0x64 uc).
+4. **Регистровая трассировка**: сбор карты обращений (`regmap.py`, база mov/add + смещение ld/st).
+
+| Ядро | Функций | Инструкций | Именованных из журнала | Регистров RGF (обращений) |
+|---|---|---|---|---|
+| **fw** | 3879 | 142 968 | 1598 | 898 (2922) |
+| **uc** | 1078 | 65 146 | 299 | 275 (936) |
+
+**Модули прошивки**: fw содержит 166 исходных файлов, uc — 86.
+Ключевые модули Talyn, отсутствующие в Sparrow: `edmg_mgr` (uc), `channels_switch_sm` / `rm_ch_switch_sm`, `sensing_manager` / `sensing_mgr` (радар FMCW), `tof_mgr` / `hw_flows_phy_tof` (FTM), `rate_search`, `linear_power`, `thermal_throttling`, `multi_network_mgr`, `wbe_driver`, `hw_drivers_tlna2_rfc`.
+
 ---
 
 ## 3. Смена канала и бондинг CB1 / CB2 (Talyn 7.5 fw)
+
 
 Управление радиоканалом сосредоточено в модуле `hw_modes_analog_manager.c`:
 - **`hwm_ANALOG_CHANNEL_SWITCH`** @0x31e10:
