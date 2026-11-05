@@ -118,11 +118,17 @@ comment-записи: `0f100000` [4.1], `badccdab5f300000` [6.2].
 | 10.11.0.70 | Terragraph | `wil6210_tg.fw` | |
 | 10.11.4.87 / .92 | Terragraph | Cambium cnWave 1.2 / 1.8 (IF2IF) | меш-прошивка |
 
-Символы пака 11ad к Sparrow 6.2 не подходят — карта памяти другая
+Символы пака 11ad к Sparrow 6.2 напрямую не подходят — карта памяти другая
 ([research/UNPACK-1.8-and-ubnt](../research/UNPACK-1.8-and-ubnt.md)); из пака
 берутся имена структур и перечислений, каждое совпадение проверяется
 ([VENDOR-ENUMS.md](https://github.com/klukonin/SparRAW-firmware/blob/main/docs/VENDOR-ENUMS.md),
 [6.2/docs/UT-DRIVERS.md](https://github.com/klukonin/SparRAW-firmware/blob/main/6.2/docs/UT-DRIVERS.md)).
+
+Детальный архитектурный анализ чипа **Talyn (QCA6436 / 802.11ay)**, разбор прошивки 7.5.3.115 и Terragraph 10.11,
+карта регистров RGF, механизмы бондинга CB1/CB2, замкнутой регулировки мощности TPC и аппаратного TDMA
+вынесены в отдельный раздел: [talyn/](../talyn/README.md) ([HW-CAPABILITIES](../talyn/HW-CAPABILITIES.md),
+[SPARROW-APPLICABILITY](../talyn/SPARROW-APPLICABILITY.md), [TDMA-TG](../talyn/TDMA-TG.md), [TPC](../talyn/TPC.md)).
+
 
 ## 8.3 Шифрование образов в пакетах RouterOS
 
